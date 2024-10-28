@@ -541,7 +541,7 @@ public class BungeeCord extends ProxyServer
     @Override
     public String getName()
     {
-        return "BungeeCord";
+        return "ParadiseCord"; // Paradise
     }
 
     @Override
