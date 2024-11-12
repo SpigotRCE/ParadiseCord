@@ -100,7 +100,6 @@ import net.md_5.bungee.query.RemoteQuery;
 import net.md_5.bungee.scheduler.BungeeScheduler;
 import net.md_5.bungee.util.CaseInsensitiveMap;
 import org.fusesource.jansi.AnsiConsole;
-import org.slf4j.impl.JDK14LoggerFactory;
 
 /**
  * Main BungeeCord proxy class.
@@ -212,7 +211,6 @@ public class BungeeCord extends ProxyServer
         consoleReader.addCompleter( new ConsoleCommandCompleter( this ) );
 
         logger = new BungeeLogger( "BungeeCord", "proxy.log", consoleReader );
-//        JDK14LoggerFactory.LOGGER = logger;
 
         // Before we can set the Err and Out streams to our LoggingOutputStream we also have to remove
         // the default ConsoleHandler from the root logger, which writes to the err stream.
