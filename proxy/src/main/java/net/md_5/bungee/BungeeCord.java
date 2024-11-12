@@ -212,7 +212,7 @@ public class BungeeCord extends ProxyServer
         consoleReader.addCompleter( new ConsoleCommandCompleter( this ) );
 
         logger = new BungeeLogger( "BungeeCord", "proxy.log", consoleReader );
-        JDK14LoggerFactory.LOGGER = logger;
+//        JDK14LoggerFactory.LOGGER = logger;
 
         // Before we can set the Err and Out streams to our LoggingOutputStream we also have to remove
         // the default ConsoleHandler from the root logger, which writes to the err stream.
