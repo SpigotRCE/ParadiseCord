@@ -2,8 +2,6 @@ package net.md_5.bungee.connection;
 
 import com.google.common.base.Preconditions;
 import com.google.gson.Gson;
-
-import java.io.DataInput;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -43,7 +41,12 @@ import net.md_5.bungee.api.config.ListenerInfo;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.PendingConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.event.*;
+import net.md_5.bungee.api.event.LoginEvent;
+import net.md_5.bungee.api.event.PlayerHandshakeEvent;
+import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.event.PreLoginEvent;
+import net.md_5.bungee.api.event.ProxyPingEvent;
+import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.http.HttpClient;
 import net.md_5.bungee.jni.cipher.BungeeCipher;
 import net.md_5.bungee.netty.ChannelWrapper;
@@ -850,43 +853,28 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
     public void relayMessage(PluginMessage input) throws Exception
     {
-        // Paradise start
-        DataInput in = input.getStream();
-        PluginMessageEvent event = new PluginMessageEvent( userCon, userCon, input.getTag(), input.getData().clone() );
-
-        if ( bungee.getPluginManager().callEvent( event ).isCancelled() )
+        if ( input.getTag().equals( "REGISTER" ) || input.getTag().equals( "minecraft:register" ) )
         {
-            throw CancelSendSignal.INSTANCE;
-        }
-        // Paradise end
+            String content = new String( input.getData(), StandardCharsets.UTF_8 );
 
-        // if switched to switch-case
-        switch (input.getTag()) {
-            case "REGISTER":
-            case "minecraft:register": {
-                String content = new String(input.getData(), StandardCharsets.UTF_8);
+            for ( String id : content.split( "\0" ) )
+            {
+                Preconditions.checkState( registeredChannels.size() < 128, "Too many registered channels" );
+                Preconditions.checkArgument( id.length() < 128, "Channel name too long" );
 
-                for (String id : content.split("\0")) {
-                    Preconditions.checkState(registeredChannels.size() < 128, "Too many registered channels");
-                    Preconditions.checkArgument(id.length() < 128, "Channel name too long");
-
-                    registeredChannels.add(id);
-                }
-                break;
+                registeredChannels.add( id );
             }
-            case "UNREGISTER":
-            case "minecraft:unregister": {
-                String content = new String(input.getData(), StandardCharsets.UTF_8);
+        } else if ( input.getTag().equals( "UNREGISTER" ) || input.getTag().equals( "minecraft:unregister" ) )
+        {
+            String content = new String( input.getData(), StandardCharsets.UTF_8 );
 
-                for (String id : content.split("\0")) {
-                    registeredChannels.remove(id);
-                }
-                break;
+            for ( String id : content.split( "\0" ) )
+            {
+                registeredChannels.remove( id );
             }
-            case "MC|Brand":
-            case "minecraft:brand":
-                brandMessage = input;
-                break;
+        } else if ( input.getTag().equals( "MC|Brand" ) || input.getTag().equals( "minecraft:brand" ) )
+        {
+            brandMessage = input;
         }
     }
 
