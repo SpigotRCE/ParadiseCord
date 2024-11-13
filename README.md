@@ -1,3 +1,3 @@
 ParadiseCord
 
-Fork of BungeeCord to implement channel logger in ParadiseClient
+Fork of BungeeCord to implement previa packet hooks in ParadiseClient
