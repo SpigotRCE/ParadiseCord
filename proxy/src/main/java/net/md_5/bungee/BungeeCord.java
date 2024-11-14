@@ -819,7 +819,7 @@ public class BungeeCord extends ProxyServer
             @Override
             public boolean apply(ProxiedPlayer input)
             {
-                return ( input == null ) ? false : input.getName().toLowerCase( Locale.ROOT ).startsWith( partialName.toLowerCase( Locale.ROOT ) );
+                return input != null && input.getName().toLowerCase(Locale.ROOT).startsWith(partialName.toLowerCase(Locale.ROOT));
             }
         } ) );
     }

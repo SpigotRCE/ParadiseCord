@@ -43,7 +43,7 @@ public class YamlConfig implements ConfigurationAdapter
     private enum DefaultTabList
     {
 
-        GLOBAL(), GLOBAL_PING(), SERVER();
+        GLOBAL(), GLOBAL_PING(), SERVER()
     }
     private final Yaml yaml;
     private Map<String, Object> config;
@@ -67,7 +67,7 @@ public class YamlConfig implements ConfigurationAdapter
             {
                 try
                 {
-                    config = (Map) yaml.load( is );
+                    config = yaml.load( is );
                 } catch ( YAMLException ex )
                 {
                     throw new RuntimeException( "Invalid configuration encountered - this is a configuration error and NOT a bug! Please attempt to fix the error or see https://www.spigotmc.org/ for help.", ex );
@@ -89,14 +89,8 @@ public class YamlConfig implements ConfigurationAdapter
         Map<String, Object> permissions = get( "permissions", null );
         if ( permissions == null )
         {
-            set( "permissions.default", Arrays.asList( new String[]
-            {
-                "bungeecord.command.server", "bungeecord.command.list"
-            } ) );
-            set( "permissions.admin", Arrays.asList( new String[]
-            {
-                "bungeecord.command.alert", "bungeecord.command.end", "bungeecord.command.ip", "bungeecord.command.reload", "bungeecord.command.kick", "bungeecord.command.send", "bungeecord.command.find"
-            } ) );
+            set( "permissions.default", Arrays.asList("bungeecord.command.server", "bungeecord.command.list") );
+            set( "permissions.admin", Arrays.asList("bungeecord.command.alert", "bungeecord.command.end", "bungeecord.command.ip", "bungeecord.command.reload", "bungeecord.command.kick", "bungeecord.command.send", "bungeecord.command.find") );
         }
 
         Map<String, Object> groups = get( "groups", null );
@@ -128,7 +122,7 @@ public class YamlConfig implements ConfigurationAdapter
         } else
         {
             String first = path.substring( 0, index );
-            String second = path.substring( index + 1, path.length() );
+            String second = path.substring( index + 1);
             Map sub = (Map) submap.get( first );
             if ( sub == null )
             {
@@ -161,7 +155,7 @@ public class YamlConfig implements ConfigurationAdapter
         } else
         {
             String first = path.substring( 0, index );
-            String second = path.substring( index + 1, path.length() );
+            String second = path.substring( index + 1);
             Map sub = (Map) submap.get( first );
             if ( sub == null )
             {

@@ -152,7 +152,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
     private enum State
     {
 
-        HANDSHAKE, STATUS, PING, USERNAME, ENCRYPT, FINISHING;
+        HANDSHAKE, STATUS, PING, USERNAME, ENCRYPT, FINISHING
     }
 
     private boolean canSendKickMessage()

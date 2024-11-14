@@ -95,6 +95,6 @@ public class ClientSettings extends DefinedPacket
     {
         ALL,
         DECREASED,
-        MINIMAL;
+        MINIMAL
     }
 }

@@ -917,7 +917,7 @@ public enum Protocol
             return protocol;
         }
 
-        public final DefinedPacket createPacket(int id, int version)
+        public DefinedPacket createPacket(int id, int version)
         {
             ProtocolData protocolData = getProtocolData( version );
             if ( protocolData == null )
@@ -981,7 +981,7 @@ public enum Protocol
             return protocolData.packetMap.containsKey( packet );
         }
 
-        final int getId(Class<? extends DefinedPacket> packet, int version)
+        int getId(Class<? extends DefinedPacket> packet, int version)
         {
 
             ProtocolData protocolData = getProtocolData( version );

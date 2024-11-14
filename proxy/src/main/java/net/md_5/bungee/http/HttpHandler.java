@@ -8,6 +8,8 @@ import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.LastHttpContent;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.api.Callback;
 
@@ -53,7 +55,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<HttpObject>
         if ( msg instanceof HttpContent )
         {
             HttpContent content = (HttpContent) msg;
-            buffer.append( content.content().toString( Charset.forName( "UTF-8" ) ) );
+            buffer.append( content.content().toString(StandardCharsets.UTF_8) );
 
             if ( msg instanceof LastHttpContent )
             {

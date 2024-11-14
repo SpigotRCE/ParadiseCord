@@ -60,7 +60,7 @@ public class ModuleManager
         configFile.createNewFile();
         try ( InputStream is = new FileInputStream( configFile ) )
         {
-            config = (Map) yaml.load( is );
+            config = yaml.load( is );
         }
 
         if ( config == null )

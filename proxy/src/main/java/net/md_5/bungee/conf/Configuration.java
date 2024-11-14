@@ -4,10 +4,7 @@ import com.google.common.base.Preconditions;
 import gnu.trove.map.TMap;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Level;
 import javax.imageio.ImageIO;
 import lombok.Getter;
@@ -106,7 +103,7 @@ public class Configuration implements ProxyConfig
         forgeSupport = adapter.getBoolean( "forge_support", forgeSupport );
         rejectTransfers = adapter.getBoolean( "reject_transfers", rejectTransfers );
 
-        disabledCommands = new CaseInsensitiveSet( (Collection<String>) adapter.getList( "disabled_commands", Arrays.asList( "disabledcommandhere" ) ) );
+        disabledCommands = new CaseInsensitiveSet( (Collection<String>) adapter.getList( "disabled_commands", Collections.singletonList("disabledcommandhere")) );
 
         Preconditions.checkArgument( listeners != null && !listeners.isEmpty(), "No listeners defined." );
 

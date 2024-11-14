@@ -4,6 +4,7 @@ import java.security.Security;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import joptsimple.OptionParser;
@@ -28,9 +29,9 @@ public class BungeeCordLauncher
 
         OptionParser parser = new OptionParser();
         parser.allowsUnrecognizedOptions();
-        parser.acceptsAll( Arrays.asList( "help" ), "Show the help" );
+        parser.acceptsAll(Collections.singletonList("help"), "Show the help" );
         parser.acceptsAll( Arrays.asList( "v", "version" ), "Print version and exit" );
-        parser.acceptsAll( Arrays.asList( "noconsole" ), "Disable console input" );
+        parser.acceptsAll(Collections.singletonList("noconsole"), "Disable console input" );
 
         OptionSet options = parser.parse( args );
 

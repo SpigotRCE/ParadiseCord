@@ -118,13 +118,7 @@ public class UpstreamBridge extends PacketHandler
         if ( con.getServer() != null )
         {
             Channel server = con.getServer().getCh().getHandle();
-            if ( channel.getHandle().isWritable() )
-            {
-                server.config().setAutoRead( true );
-            } else
-            {
-                server.config().setAutoRead( false );
-            }
+            server.config().setAutoRead(channel.getHandle().isWritable());
         }
     }
 

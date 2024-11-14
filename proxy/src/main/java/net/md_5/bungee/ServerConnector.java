@@ -80,7 +80,7 @@ public class ServerConnector extends PacketHandler
     private enum State
     {
 
-        LOGIN_SUCCESS, LOGIN, FINISHED;
+        LOGIN_SUCCESS, LOGIN, FINISHED
     }
 
     @Override

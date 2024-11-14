@@ -48,7 +48,7 @@ public class ServerKickEvent extends Event implements Cancellable
     public enum State
     {
 
-        CONNECTING, CONNECTED, UNKNOWN;
+        CONNECTING, CONNECTED, UNKNOWN
     }
 
     @Deprecated
